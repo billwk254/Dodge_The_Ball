@@ -46,6 +46,7 @@ def checkcollision(target ,d ,objtarget):
     pos = pygame.mouse.get_pos()
     dist = ((pos[0] -target[0] - objtarget.w)**2 + (pos[1] -target[1] -objtarget.h)**2)**0.5
     if dist <= d + objtarget.w:
+        play_music("bounce.mp3")
         return True
     return False
 
@@ -83,6 +84,7 @@ def gameloop(dodge_settings,screen):
                 x,y = event.pos
                 pause_collide = text_rect.collidepoint(x,y)
                 if pause_collide:
+                    play_music("bounce.mp3")
                     pause_menu(dodge_settings,screen)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
@@ -123,13 +125,13 @@ def pause_menu(dodge_settings,screen):
     """A function that draws the pause menu onto the screen"""
     font = pygame.font.SysFont("Agency FB", 100)
     text = font.render("Game Paused",True,dodge_settings.blue)
-    text2 = font.render("Instructions",True,dodge_settings.orange)
-    text_rect2 = text2.get_rect()
-    text_rect2.x = dodge_settings.screen_width / 2 - 170
-    text_rect2.y = dodge_settings.screen_height / 2
-    screen.blit(text2,text_rect2)
+    #text2 = font.render("Instructions",True,dodge_settings.orange)
+    #text_rect2 = text2.get_rect()
+    #text_rect2.x = dodge_settings.screen_width / 2 - 170
+    #text_rect2.y = dodge_settings.screen_height / 2
+    #screen.blit(text2,text_rect2)
     text_rect =text.get_rect()
-    text_rect.x = dodge_settings.screen_width / 2 - 180
+    text_rect.x = dodge_settings.screen_width / 2 - 200
     text_rect.y = dodge_settings.screen_height / 2 - 100
     screen.blit(text,text_rect)
     pygame.display.update()
@@ -201,6 +203,15 @@ def after_collide(dodge_settings,screen,collide,pradius,target,balls):
 def pauseflag():
     """A function called to Refresh the contents on the screen"""
     pygame.display.update()
+
+def play_music(filename):
+    """Loads in a sound file to play/sound files are placed in the sound
+    directory in the project file"""
+    pygame.mixer.init()
+    pygame.mixer.music.load(f"sound/{filename}")
+    pygame.mixer.music.play(0)
+
+
 
 
 
