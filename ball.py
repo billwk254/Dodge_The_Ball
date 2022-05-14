@@ -2,6 +2,7 @@ from math import *
 import pygame
 import random
 import game_functions as gf
+import time
 
 class Ball:
     """A class that creates the balls that the player aims to avoid and defines their movement on the screen"""
@@ -45,6 +46,9 @@ class Ball:
         pos = pygame.mouse.get_pos()
         dist = ((pos[0] - self.x)**2 +(pos[1] -self.y)**2)**0.5
         if dist <= self.r + radius:
+            gf.play_music("gameover.mp3")
+            time.sleep(2)
             gf.gameover(self.screen,self.dodge_settings)
+
 
 
