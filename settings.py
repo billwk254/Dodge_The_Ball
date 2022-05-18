@@ -6,7 +6,7 @@ class Settings():
         self.screen_height = 700
         self.clock = pygame.time.Clock()
         self.bg_color = (51,51,51)
-        self.playercolor = (249,231,159)
+        self.playercolor = (255,255,255)
         self.red = (203,67,53)
         self.yellow = (241, 196, 15)
         self.blue = (46, 134, 193)
