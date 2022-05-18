@@ -3,6 +3,19 @@ import sys
 from ball import Ball
 from target import Target
 
+current_high_score = ""
+game_high = ""
+def check_highscore(dodge_settings):
+    global current_high_score,game_high
+    """A function that checks the highest score saved"""
+    highfile = open("highscore.txt","rt")
+    current_high_score = highfile.read().strip()
+    if current_high_score:
+        current_high_score = int(current_high_score)
+    else:
+        current_high_score = dodge_settings.score
+    highfile.close()
+
 def gameover(screen,dodge_settings):
     """A function that gets called when the balls on the screen collide with the player pointer """
     loop = True
@@ -67,6 +80,7 @@ def gameloop(dodge_settings,screen):
     balls = []
     #Reset the score each time the game starts
     dodge_settings.score = 0
+    check_highscore(dodge_settings)
 
     for i in range(1):
         newball = Ball(pradius +2 ,5,dodge_settings,screen)
@@ -114,11 +128,16 @@ def gameloop(dodge_settings,screen):
 
             screen.blit(text,text_rect)
             target.draw()
+
             displayscore(dodge_settings,screen)
+
+            display_high_score(screen)
+        save_high_score(dodge_settings, screen)
         if pause_collide:
             pass
         else:
             pauseflag()
+
         dodge_settings.clock.tick(60)
 
 def pause_menu(dodge_settings,screen):
@@ -210,6 +229,31 @@ def play_music(filename):
     pygame.mixer.init()
     pygame.mixer.music.load(f"sound/{filename}")
     pygame.mixer.music.play(0)
+
+def save_high_score(dodge_settings,screen):
+    """Save the highscore if the user gets to the highscore during a playthrough
+    of the game"""
+    global current_high_score
+    if dodge_settings.score > current_high_score:
+        highfile = open("highscore.txt", "wt")
+        game_high = dodge_settings.score
+        highfile.write(str(game_high))
+        highfile.close()
+
+def display_high_score(screen):
+    global current_high_score,game_high
+    """Displays the highest score by the player onto the screen"""
+    font = pygame.font.SysFont("Forte", 30)
+    scoretext = font.render("Highscore: " + str(current_high_score), True, (230, 230, 230))
+    screen.blit(scoretext, (420, 10))
+    pygame.display.update()
+
+
+
+
+
+
+
 
 
 
