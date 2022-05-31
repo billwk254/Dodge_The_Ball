@@ -55,9 +55,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/billwk254/Dodge_The_Ball/images/dodge_screenshot.png)
+  <a href="https://github.com/billwk254/Dodge_The_Ball">
+    <img src="images/dodge_screenshot.png" alt="Logo" width="400" height="">
+  </a>
 
-THe project is a simple 2D game intended to be a fun pastime for people of all ages
+The project is a simple 2D game intended to be a fun pastime for people of all ages.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
