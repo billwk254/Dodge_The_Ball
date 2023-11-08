@@ -218,6 +218,11 @@ def after_collide(dodge_settings,screen,collide,pradius,target,balls):
         newball.createball()
         balls.append(newball)
         target.generateNewCoord()
+    elif dodge_settings.score == 55 and len(balls) == 12:
+        newball = Ball(pradius + 2, 16, dodge_settings, screen)
+        newball.createball()
+        balls.append(newball)
+        target.generateNewCoord()
 
 def pauseflag():
     """A function called to Refresh the contents on the screen"""
