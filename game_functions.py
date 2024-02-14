@@ -7,7 +7,6 @@ current_high_score = ""
 game_high = ""
 def check_highscore(dodge_settings):
     global current_high_score,game_high
-    """A function that checks the highest score saved"""
     highfile = open("highscore.txt","rt")
     current_high_score = highfile.read().strip()
     if current_high_score:
@@ -231,8 +230,6 @@ def play_music(filename):
     pygame.mixer.music.play(0)
 
 def save_high_score(dodge_settings,screen):
-    """Save the highscore if the user gets to the highscore during a playthrough
-    of the game"""
     global current_high_score
     if dodge_settings.score > current_high_score:
         highfile = open("highscore.txt", "wt")
@@ -242,7 +239,6 @@ def save_high_score(dodge_settings,screen):
 
 def display_high_score(screen):
     global current_high_score,game_high
-    """Displays the highest score by the player onto the screen"""
     font = pygame.font.SysFont("Forte", 30)
     scoretext = font.render("Highscore: " + str(current_high_score), True, (230, 230, 230))
     screen.blit(scoretext, (420, 10))
